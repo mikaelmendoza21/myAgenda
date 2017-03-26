@@ -1,0 +1,21 @@
+{
+  "name": "my_agenda",
+  "version": "1.0.0",
+  "description": "Accessible agenda web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "COMP584 Team 6 - CSUN Spring 2017",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.5.6",
+    "express-session": "^1.15.1",
+    "install": "^0.8.7",
+    "mongoose": "^4.8.5",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
+}
