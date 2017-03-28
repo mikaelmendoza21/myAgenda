@@ -1,11 +1,12 @@
-EXPRESS
-app.render()  passes the view to an application to handle it
-res.render()  returns the view as HTML to the user
 
-EJS 
-A Node.js templating engine
+First thing to do after cloning the project.
+From inside the folder go to the node.js console and do:
+	npm install
+	bower install
 
--------Db
+
+
+-------Db---------------------------------------------------------------
 Access commands, assuming you installed MongoDb in the default folder.
 From the Windows Temrminal the commands are:
 
@@ -16,8 +17,17 @@ From the Windows Temrminal the commands are:
     "C:\Program Files\MongoDB\Server\3.4\bin\mongo.exe"
 
 -The database we are using is called 'testApp'
+you will have to set up your own copy on your local  MongoDb
+-----------------------------------------------------------------------
 
+Components Overview----------------------------------------------------
 
+EXPRESS
+app.render()  passes the view to an application to handle it
+res.render()  returns the view as HTML to the user
+
+EJS 
+A Node.js templating engine
 MONGOOSE
 A Node.js module that acts as Object Document Mapper (ODM) for MongoDb
 

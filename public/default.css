@@ -1,0 +1,54 @@
+/* DEFAULT STYLE */
+/* External style sheet */
+/*div	*/
+
+body{
+	background-color:#004087;
+	font-family:arial, sans-serif;
+	font-size: large;
+	margin:0.5%;
+}
+
+a{
+	color:inherit;
+	text-decoration:none;
+}
+div.container{
+	text-align: center;
+	width:96%;
+	margin:10px 10px 10px 10px; 
+	padding:0px;
+	background:#ffffff;
+	border-style: solid;
+	border-width:4px;
+	border-color: #000000;
+	/*overflow:auto;*/
+}
+
+div.form-signin{
+	width: 30%;
+	float: right;
+	border-style: solid;
+	border-width: 4px;
+	border-color: #8d949a;
+	text-align:center;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-right:500px;
+	margin-left:50px;
+	background:#ccdda9;
+}
+
+#title{
+	display: block;
+	text-align: center;
+	margin-left: 0;
+	margin-right: 20px;
+	margin-top: 20px;
+	margin-bottom:0px;
+	line-height:0px
+	padding: 0;
+	font-weight: bold;
+	text-decoration:none;
+}
+

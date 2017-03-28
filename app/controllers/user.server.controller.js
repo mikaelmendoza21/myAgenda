@@ -1,6 +1,8 @@
 var User = require('mongoose').model('User'),
     passport = require('passport');
 
+var app_title = 'myAgenda';
+
 //Error-handling for regitering a new User
 var getErrorMessage = function(err) {
     var message = '';
@@ -28,7 +30,7 @@ var getErrorMessage = function(err) {
 exports.renderLogin = function(req, res, next) {
     if (!req.user) {
         res.render('login', {
-            title: 'Log-in Form',
+            title: app_title,
             messages: req.flash('error') || req.flash('info')
         });
     }
@@ -41,7 +43,7 @@ exports.renderLogin = function(req, res, next) {
 exports.renderRegister = function(req, res, next) {
     if (!req.user) {
         res.render('register', {
-            title: 'Register Form',
+            title: app_title,
             messages: req.flash('error')
         });
     }
