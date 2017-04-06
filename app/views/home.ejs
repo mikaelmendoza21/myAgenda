@@ -17,20 +17,22 @@
 	<script type="text/javascript" src="/js/bower_components/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="/users/users.client.module.js"></script>
 	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
-	<script type="text/javascript" src="/example/example.client.module.js"></script>
+	<!-- <script type="text/javascript" src="/example/example.client.module.js"></script>
 	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
-	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script> -->
 	<script type="text/javascript" src="/application.js"></script>
-	<script type="text/javascript">
-	    window.user = <%- user || 'null' %>;
-	</script>
 	<!-- -->
+
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Hello!</h1>
-			<br>
-		    <button class="btn btn-lg" alt="Register Button"><a href="/register">Register</a></button>
-			<button class="btn btn-lg" alt="Log In Button"><a href="/login">Login</a></button>
+			<h1>Home</h1>
+
+			<% for(var i in messages) { %>
+            <div class="flash"><%= messages[i] %></div>
+            <% } %>
+            
+			<h2><%= user%> <h2>
+			<h3>[Your events here]</h3>
 		</div>
 	</div>
 </body>

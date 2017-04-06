@@ -1,7 +1,9 @@
 /* DEFAULT STYLE */
 /* External style sheet */
-/*div	*/
 
+html{
+	background-color:#004087;
+}
 body{
 	background-color:#004087;
 	font-family:arial, sans-serif;
@@ -10,45 +12,66 @@ body{
 }
 
 a{
-	color:inherit;
 	text-decoration:none;
 }
-div.container{
+
+.container{
+	display: block;
+	background-color:#ccdda9;
 	text-align: center;
 	width:96%;
-	margin:10px 10px 10px 10px; 
-	padding:0px;
-	background:#ffffff;
+	margin:1%; 
+	padding:1%;
 	border-style: solid;
-	border-width:4px;
-	border-color: #000000;
+	border-width:2px;
+	border-color: black;
 	/*overflow:auto;*/
 }
 
-div.form-signin{
-	width: 30%;
-	float: right;
+#title-container{
+	background-color:#d0e1f3;
 	border-style: solid;
-	border-width: 4px;
-	border-color: #8d949a;
-	text-align:center;
-	margin-top:10px;
-	margin-bottom:10px;
-	margin-right:500px;
-	margin-left:50px;
-	background:#ccdda9;
+	border-width: 2px;
+	border-color: black;
+	color:white;
+	padding: 1%;
+	margin-top: 2%;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	text-decoration:none;
+}
+#title-container.a{
+	text-decoration:none;
 }
 
 #title{
-	display: block;
-	text-align: center;
-	margin-left: 0;
-	margin-right: 20px;
-	margin-top: 20px;
-	margin-bottom:0px;
-	line-height:0px
-	padding: 0;
 	font-weight: bold;
 	text-decoration:none;
 }
 
+.flash{
+	text-align: center;
+	background-color: red;
+	color: white;
+	text-decoration: bold;
+	font-size: x-large;
+}
+
+.form-signin{
+	background:#ccdda9;
+	font-size: large;
+}
+
+.jumbotron{
+	background-color:#ccdda9;
+}
+
+.btn-lg{
+	font-size: larger;
+	text-decoration: bold;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+
+}

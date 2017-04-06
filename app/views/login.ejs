@@ -8,18 +8,30 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 </head>
-<body>
-    <% for(var i in messages) { %>
-        <div class="flash">
-            <%= messages[i] %>
-        </div>
-    <% } %>
-    <div id="title">
-        <a href="/"><h1><%=title %></h1></a>
+<body ng-app="my-agenda">
+    <div id="title-container">
+        <a href="/"><h1 id="title"><%=title %></h1></a>
     </div>
+    <section ng-view></section>
+
+    <!-- Angular scripts -->
+    <script type="text/javascript" src="/js/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/js/bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/users/users.client.module.js"></script>
+    <script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+    <!-- <script type="text/javascript" src="/example/example.client.module.js"></script>
+    <script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+    <script type="text/javascript" src="/example/config/example.client.routes.js"></script> -->
+    <script type="text/javascript" src="/application.js"></script>
+    <!-- -->
+
     <div class="container">
         <form class="form-signin" action="/login" method="post">
             <h2 class="form-signin-heading text-center">Hello! please Log In</h2>
+
+            <% for(var i in messages) { %>
+            <div class="flash"><%= messages[i] %></div>
+            <% } %>
 
             <label for="username" class="sr-only">Username</label>
             <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
@@ -30,7 +42,7 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
           </form>
           <div class="center-block text-center">
-                <a href="/register">Register</a>
+                <a class="btn btn-lg" href="/register">Register</a>
             </div>
           <!-- <div class="row">
             <div class="center-block text-center">

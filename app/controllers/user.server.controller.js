@@ -35,7 +35,7 @@ exports.renderLogin = function(req, res, next) {
         });
     }
     else {
-        return res.redirect('/');
+        return res.redirect('/home');
     }
 };
 
@@ -48,9 +48,20 @@ exports.renderRegister = function(req, res, next) {
         });
     }
     else {
-        return res.redirect('/');
+        return res.redirect('/home');
     }
 };
+
+exports.renderHome = function(req, res, next) {
+    console.log("User data: "+ JSON.stringify(req.user));
+    
+    res.render('home', {
+        title: app_title,
+        messages: req.flash('error'),
+        user: JSON.stringify(req.user)
+    });
+};
+
 
 //Performs the Registration routine
 exports.register = function(req, res, next) {
@@ -69,12 +80,12 @@ exports.register = function(req, res, next) {
                 if (err)
                     return next(err);
 
-                return res.redirect('/');
+                return res.redirect('/home');
             });
         });
     }
     else {
-        return res.redirect('/');
+        return res.redirect('/home');
     }
 };
 

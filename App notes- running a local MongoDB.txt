@@ -28,6 +28,7 @@ res.render()  returns the view as HTML to the user
 
 EJS 
 A Node.js templating engine
+
 MONGOOSE
 A Node.js module that acts as Object Document Mapper (ODM) for MongoDb
 

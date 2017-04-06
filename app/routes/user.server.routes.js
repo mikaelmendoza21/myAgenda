@@ -16,10 +16,12 @@ module.exports = function(app) {
     app.route('/login')
         .get(users.renderLogin)
         .post(passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/home',
             failureRedirect: '/login',
             failureFlash: true
         }));
+
+    app.get('/home', users.renderHome);
 
     app.get('/logout', users.logout);
 };
