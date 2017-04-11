@@ -23,7 +23,7 @@ var UserSchema = new Schema({
     provider: String,	//strategy used to authenticate user (Local or 3rd party- Fb, Twitter, Gmail)
     providerId: String,	//name of 3rd party authentication provider
     providerData: {},	//storage for 3rd part authentication object
-    events: {}	//stores user's TODO items
+    events: {}	//stores user's Event items
 });
 
 //Hashes the User's password before saving it to Db

@@ -3,6 +3,7 @@ var User = require('mongoose').model('User'),
 
 var app_title = 'myAgenda';
 
+
 //Error-handling for regitering a new User
 var getErrorMessage = function(err) {
     var message = '';
@@ -24,6 +25,61 @@ var getErrorMessage = function(err) {
     }
 
     return message;
+};
+
+//Create and save a User
+exports.create = function(req, res, next) {
+    var user = new User(req.body);
+    user.save(function(err) {
+        if (err) {
+            return next(getErrorMessage(err));
+        } 
+        else {
+            res.json(user);
+        }
+    });
+};
+
+//Read a User object (convert to JSON)
+exports.read = function(req, res) {
+    res.json(req.user);
+};
+
+//Update User
+exports.update = function(req, res, next) {
+    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+        if (err) {
+            return next(err);
+        } 
+        else {
+            res.json(user);
+        }
+    });
+};
+
+//Find user by ID
+exports.userByID = function(req, res, next, id) {
+    User.findOne({_id: id }, 
+                function(err, user) {
+                    if (err) {
+                        return next(err);
+                    } else {
+                        req.user = user;
+                        next();
+                    }
+                });
+};
+
+//Update single User by Id
+exports.update = function(req, res, next) {
+    User.findByIdAndUpdate(req.user.id, req.body, 
+        function(err, user) {
+            if (err) {
+                    return next(err);
+            } else {
+            res.json(user);
+            }
+        });
 };
 
 //calls the Log In page
@@ -52,13 +108,14 @@ exports.renderRegister = function(req, res, next) {
     }
 };
 
+
 exports.renderHome = function(req, res, next) {
     console.log("User data: "+ JSON.stringify(req.user));
     
     res.render('home', {
         title: app_title,
         messages: req.flash('error'),
-        user: JSON.stringify(req.user)
+        user: req.user
     });
 };
 
@@ -93,4 +150,14 @@ exports.register = function(req, res, next) {
 exports.logout = function(req, res) {
     req.logout();
     res.redirect('/');
+};
+
+//check that User if Logged In
+exports.requiresLogin = function(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.status(401).send({
+            message: 'User is not logged in'
+        });
+    }
+    next();
 };

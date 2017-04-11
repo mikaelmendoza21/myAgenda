@@ -15,24 +15,39 @@
 	<!-- Angular scripts -->
 	<script type="text/javascript" src="/js/bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="/js/bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="/js/angular-resource/angular-resource.min.js"></script>
+
+	<!--Events module -->
+	<script type="text/javascript" src="/events/events.client.module.js"></script>
+    <script type="text/javascript" src="/events/controllers/events.client.controller.js"></script>
+    <script type="text/javascript" src="/events/services/events.client.service.js"></script>
+    <script type="text/javascript" src="/events/config/events.client.routes.js"></script>
+
+    <!-- Users module -->
 	<script type="text/javascript" src="/users/users.client.module.js"></script>
 	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
-	<!-- <script type="text/javascript" src="/example/example.client.module.js"></script>
+
+	<script type="text/javascript" src="/example/example.client.module.js"></script>
 	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
-	<script type="text/javascript" src="/example/config/example.client.routes.js"></script> -->
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Main Angular application file -->
 	<script type="text/javascript" src="/application.js"></script>
 	<!-- -->
 
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Home</h1>
+			<h1><%= user.name %>'s Home</h1>
 
 			<% for(var i in messages) { %>
             <div class="flash"><%= messages[i] %></div>
             <% } %>
-            
-			<h2><%= user%> <h2>
-			<h3>[Your events here]</h3>
+
+            <h2>Events</h2>
+			 <% for(event in user.events) {%>
+				<h3> {{event.name}}</h3>
+				<h2>{{event.date}}</h2>
+			<% } %> 
 		</div>
 	</div>
 </body>

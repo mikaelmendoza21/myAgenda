@@ -6,6 +6,10 @@ var EventSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    date:{  //the Date of the event
+        type: Date,
+        default: Date.now
+    },
     title: {
         type: String,
         default: '',
@@ -26,4 +30,4 @@ var EventSchema = new Schema({
         default: false
     }
 });
-mongoose.model('Event', TodoSchema);
+mongoose.model('Event', EventSchema);

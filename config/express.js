@@ -16,13 +16,6 @@ module.exports = function() {
     }));
     app.use(bodyParser.json());
 
-    //use flash messages
-    app.use(flash());
-
-    //use this code before any route definitions
-    app.use(passport.initialize());
-    app.use(passport.session());
-
     //use a Express-Session
     app.use(session({
         saveUninitialized: true,
@@ -32,7 +25,14 @@ module.exports = function() {
 
     //View settings, EJS as renderer
     app.set('views', './app/views');
-	app.set('view engine', 'ejs');
+    app.set('view engine', 'ejs');
+
+    //use flash messages
+    app.use(flash());
+
+    //use this code before any route definitions
+    app.use(passport.initialize());
+    app.use(passport.session());
 
 	//Routes
     require('../app/routes/index.server.routes.js')(app);
