@@ -37,16 +37,18 @@
 
 	<div class="jumbotron">
 		<div class="container">
-			<h1><%= user.name %>'s Home</h1>
+			<h1>Welcome <%= user.name %>!</h1>
 
 			<% for(var i in messages) { %>
             <div class="flash"><%= messages[i] %></div>
             <% } %>
 
             <h2>Events</h2>
-			 <% for(event in user.events) {%>
-				<h3> {{event.name}}</h3>
-				<h2>{{event.date}}</h2>
+			 <% for(i in user.events) {%>
+			 	<h3>Upcoming</h3>
+				<h4><%= user.events[i].name %></h4>
+				<h4><%= user.events[i].date %></h4>
+				<br>
 			<% } %> 
 		</div>
 	</div>

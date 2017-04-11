@@ -1,0 +1,4 @@
+
+//To add an event for user 'test'
+db.users.update({'username':'test'}, {$set:{"events": [{'name':'Doctor appointment', 'date':'April, 20 2017 16:00:00'}]}});
+

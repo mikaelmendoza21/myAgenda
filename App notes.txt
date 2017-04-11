@@ -7,10 +7,8 @@ npm install
 	
 bower install
 
-
-
-
-
+//Then, with MongoDb running do:
+node server
 -------Db---------------------------------------------------------------
 
 Access commands, assuming you installed MongoDb in the default folder.
@@ -22,7 +20,7 @@ From the Windows Temrminal the commands are:
 	"C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
 
 
--Run the MongoDb shell
+-Run the MongoDb shell (once MongoDb binary is running)
     
 "C:\Program Files\MongoDB\Server\3.4\bin\mongo.exe"
 
