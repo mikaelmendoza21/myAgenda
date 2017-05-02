@@ -3,20 +3,21 @@ angular.module('events').controller('EventsController', ['$scope', '$routeParams
         $scope.authentication = Authentication;
 
         $scope.create = function() {
-            var event = new Events({
+            console.log("Creating new Event");
+            var event = new Event({
                 title: this.title,
                 date: this.date
             });
 
             event.$save(function(response) {
-                $location.path('event/' + response._id);
+                $location.path('events/' + response._id);
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
         $scope.find = function() {
-            $scope.events = Events.query();
+            $scope.event = Event.query();
         };
 
         $scope.findOne = function() {
@@ -27,7 +28,7 @@ angular.module('events').controller('EventsController', ['$scope', '$routeParams
 
         $scope.update = function() {
             $scope.event.$update(function() {
-                $location.path('event/' + $scope.event._id);
+                $location.path('events/' + $scope.event._id);
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });

@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">myAgenda</a>
+                <a class="navbar-brand" href="#page-top">My Agenda</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,7 +19,7 @@
                         <a href="#page-top"></a>
                     </li>
 
-                   <!--  <li class="page-scroll" data-ng-show="!authentication.user">
+                    <li class="page-scroll" data-ng-show="!authentication.user">
                         <a href="/login">Login</a>
                     </li>
                     <li class="page-scroll" data-ng-show="!authentication.user">
@@ -27,11 +27,14 @@
                     </li>
 
                     <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/#!/events/create">CREATE</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
                         <a href="/#!/events">Events</a>
                     </li>
                     <li class="page-scroll" data-ng-show="authentication.user">
                         <a href="/logout">Hello <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>, Logout?</a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -39,29 +42,15 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <section class="container">
-        <h1>New Event</h1>
-        <form class="form-signin" data-ng-submit="create()" novalidate>
-            <div>
-                <label for="title" class="sr-only">Title</label>
-                <div>
-                    <input type="text" data-ng-model="title" id="title" placeholder="Title" required autofocus class="form-control">
-                </div>
-            </div>
-
-            <div>
-                <label for="date" class="sr-only">Date</label>
-                <div>
-                   <input type="date" id="exampleInput" name="input" data-ng-model="events.date"
-       placeholder="yyyy-MM-dd" required />
-                </div>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Create Event</button>
-            </div>
-            <div data-ng-show="error">
-                <strong data-ng-bind="error"></strong>
-            </div>
-        </form>
+    <section data-ng-init="findOne()" class="container">
+        <h1 data-ng-bind="event.title" ng-class="event.completed?'completed':''"></h1>
+        <div data-ng-show="authentication.user._id == todo.creator._id">
+            <a href="/#!/events/{{event._id}}/edit">edit</a>
+            <a href="#" data-ng-click="delete();">delete</a>
+        </div>
+        <small>
+        <em data-ng-bind="event.created | date:'mediumDate'"></em>
+        </small>
+        <p data-ng-bind="event.date"></p>
     </section>
 </div>

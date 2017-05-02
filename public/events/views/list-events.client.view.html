@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">myAgenda</a>
+                <a class="navbar-brand" href="#page-top">My Agenda</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,7 +19,7 @@
                         <a href="#page-top"></a>
                     </li>
 
-                   <!--  <li class="page-scroll" data-ng-show="!authentication.user">
+                    <li class="page-scroll" data-ng-show="!authentication.user">
                         <a href="/login">Login</a>
                     </li>
                     <li class="page-scroll" data-ng-show="!authentication.user">
@@ -27,11 +27,14 @@
                     </li>
 
                     <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/#!/events/create">CREATE</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
                         <a href="/#!/events">Events</a>
                     </li>
                     <li class="page-scroll" data-ng-show="authentication.user">
                         <a href="/logout">Hello <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>, Logout?</a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -39,29 +42,22 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <section class="container">
-        <h1>New Event</h1>
-        <form class="form-signin" data-ng-submit="create()" novalidate>
-            <div>
-                <label for="title" class="sr-only">Title</label>
-                <div>
-                    <input type="text" data-ng-model="title" id="title" placeholder="Title" required autofocus class="form-control">
-                </div>
-            </div>
+    <section data-ng-init="find()">
+        <div class="container">
+            <h1>Events</h1>
+            Show completed: <input type="checkbox" ng-model="showcompleted" ng-init="showcompleted=true">
+            <ul>
+                <li data-ng-repeat="event in events" ng-if="showcompleted && event.completed || !event.completed">
+                    <a data-ng-href="#!/events/{{event._id}}" data-ng-bind="event.title" ng-class="event.completed?'completed':''"></a>
+                    (<small data-ng-bind="event.created | date:'short'"></small>)
+                    <br>
 
-            <div>
-                <label for="date" class="sr-only">Date</label>
-                <div>
-                   <input type="date" id="exampleInput" name="input" data-ng-model="events.date"
-       placeholder="yyyy-MM-dd" required />
-                </div>
+                    <p data-ng-bind="event.date" class="date"></p>
+                </li>
+            </ul>
+            <div data-ng-hide="!events || events.length">
+                No Events yet, why don't you <a href="/#!/events/create">create one</a>?
             </div>
-            <div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Create Event</button>
-            </div>
-            <div data-ng-show="error">
-                <strong data-ng-bind="error"></strong>
-            </div>
-        </form>
+        </div>
     </section>
 </div>
