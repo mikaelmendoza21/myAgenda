@@ -8,7 +8,8 @@ var EventSchema = new Schema({
     },
     date:{  //the Date of the event
         type: Date,
-        default: Date.now
+        default:Date.now,
+        required: "Must specify a Date for the event"
     },
     title: {
         type: String,

@@ -4,20 +4,21 @@ angular.module('events').controller('EventsController', ['$scope', '$routeParams
 
         $scope.create = function() {
             console.log("Creating new Event");
-            var event = new Event({
+            var event = new Events({
                 title: this.title,
                 date: this.date
             });
 
             event.$save(function(response) {
                 $location.path('events/' + response._id);
+                console.log("Back from ng-service");
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
         $scope.find = function() {
-            $scope.event = Event.query();
+            $scope.event = Events.query();
         };
 
         $scope.findOne = function() {

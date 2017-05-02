@@ -1,12 +1,13 @@
-var users = require('../../app/controllers/users.server.controller'),
+var users = require('../../app/controllers/user.server.controller'),
     events = require('../../app/controllers/event.server.controller');
 
 module.exports = function(app) {
-    app.route('/api/event')
+    app.route('/api/events')
         .get(events.list)
-        .post(users.requiresLogin, event.create);
+        .post(users.requiresLogin, events.create);
+        //.post(events.create);
 
-    app.route('/api/event/:eventId')
+    app.route('/api/events/:eventId')
         .get(events.read)
         .put(users.requiresLogin, events.hasAuthorization, events.update)
         .delete(users.requiresLogin, events.hasAuthorization, events.delete);

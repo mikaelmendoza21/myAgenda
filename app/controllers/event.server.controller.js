@@ -12,15 +12,17 @@ var getErrorMessage = function(err) {
 };
 
 exports.create = function(req, res) {
-    var event = new Event(req.body);
-    event.creator = req.user;
+    console.log("Trying to create a new Event- Title= " + JSON.stringify(req.body));
+    var event = new Event();
+    event.creator = JSON.stringify(req.user);
+    event.date = JSON.stringify(req.date);
     event.save(function(err) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(todo);
+            res.json(event);
         }
     });
 };
