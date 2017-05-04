@@ -3,7 +3,8 @@ angular.module('events').controller('EventsController', ['$scope', '$routeParams
         $scope.authentication = Authentication;
 
         $scope.create = function() {
-            console.log("Creating new Event");
+            console.log("Creating new Event - Date="+ JSON.stringify(this.date) 
+                + " Title="+ JSON.stringify(this.title) );
             var event = new Events({
                 title: this.title,
                 date: this.date

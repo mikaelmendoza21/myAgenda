@@ -1,5 +1,7 @@
 var mongoose = require('mongoose'),
-    Event = mongoose.model('Event');
+    Event = mongoose.model('Event'),
+    User= mongoose.model('User'),
+    userMethods = require('../../app/controllers/user.server.controller');
 
 var getErrorMessage = function(err) {
     if (err.errors) {
@@ -12,10 +14,19 @@ var getErrorMessage = function(err) {
 };
 
 exports.create = function(req, res) {
-    console.log("Trying to create a new Event- Title= " + JSON.stringify(req.body));
-    var event = new Event();
-    event.creator = JSON.stringify(req.user);
-    event.date = JSON.stringify(req.date);
+    var currentUser = new User(req.user);
+    var event = new Event(req.body);
+
+    //Add event to User's events[]
+    User.findByIdAndUpdate(
+        currentUser.id,
+        {$push:{"events": event}},
+        {safe: true, upsert: true, new : true},
+        function(err, model) {
+            console.log(err);
+        }
+        );
+
     event.save(function(err) {
         if (err) {
             return res.status(400).send({
@@ -28,13 +39,14 @@ exports.create = function(req, res) {
 };
 
 exports.list = function(req, res) {
-    Event.find().sort('-created').populate('creator', 'name username').exec(function(err, event) {
+    var currentUser = new User(req.user);
+    User.find({"id":currentUser.id}, 'events', function(err, events) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(event);
+            res.json(events);
         }
     });
 };
@@ -62,6 +74,18 @@ exports.update = function(req, res) {
     event.comment = req.body.comment;
     event.date = req.body.date;
     event.completed = req.body.completed;
+    event.creator = req.user;
+
+    var currentUser = new User(req.user);
+    //Add event to User's events[]
+    User.findByIdAndUpdate(
+        currentUser.id,
+        {$push:{"events": event}},
+        {safe: true, upsert: true, new : true},
+        function(err, model) {
+            console.log(err);
+        }
+        );
 
     event.save(function(err) {
         if (err) {

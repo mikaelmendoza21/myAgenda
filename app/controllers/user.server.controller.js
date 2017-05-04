@@ -1,4 +1,5 @@
 var User = require('mongoose').model('User'),
+    Event = require('mongoose').model('Event'),
     passport = require('passport');
 
 var app_title = 'myAgenda';
@@ -82,6 +83,11 @@ exports.update = function(req, res, next) {
         });
 };
 
+exports.addEvent = function(req, res, next){
+    console.log("adding events for "+ req.user);
+    user.events.push(req.body);
+}
+
 //calls the Log In page
 exports.renderLogin = function(req, res, next) {
     if (!req.user) {
@@ -111,7 +117,9 @@ exports.renderRegister = function(req, res, next) {
 
 exports.renderHome = function(req, res, next) {
     console.log("User data: "+ JSON.stringify(req.user));
-    
+    if(!req.user){
+        return res.redirect('/login');
+    }
     res.render('home', {
         title: app_title,
         messages: req.flash('error'),
@@ -124,6 +132,11 @@ exports.renderHome = function(req, res, next) {
 exports.register = function(req, res, next) {
     if (!req.user) {
         var user = new User(req.body);
+        var defaultEvent = new Event({
+            "title":"New Event",
+            "date": Date.now
+        });
+        user.events= [defaultEvent];
         var message = null;
         user.provider = 'local';
         user.save(function(err) {

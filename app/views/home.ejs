@@ -11,7 +11,8 @@
 
 <body ng-app="my-agenda">
 	<div id="title-container">
-        <a href="/home#!"><h1 id="title"><%=title %></h1></a>
+        <a href="/home#!"><h1 alt="Site title" id="title"><%=title %></h1></a>
+        <a href="/logout"><h3 alt="Log out?" id="logout_button">Log out</h3></a>
     </div>
 	<section ng-view class="main-section"></section>
 
@@ -45,17 +46,21 @@
 			<% for(var i in messages) { %>
             <div class="flash"><%= messages[i] %></div>
             <% } %>
-
-            <h2>Events</h2>
-			 <% for(i in user.events) {%>
-			 	<h3>Upcoming</h3>
-				<h4><%= user.events[i].name %></h4>
+            <br>
+            <h2><b>Events</b></h2>
+            <% if (user.events) { %>
+            <h3>Upcoming :</h3>
+			 	<% for(i in user.events) {%>
+				<h3><b><%= user.events[i].title %></b></h3>
 				<h4><%= user.events[i].date %></h4>
 				<br>
-			<% } %> 
+			<% 		} 
+				} else{ %> 
+				<h4>No events found</h4>
+				<% } %>
 			<br>
-			<button class="btn btn-lg" alt="Add Event Button"><a href="/#!/events/create">Add Event</a></button>
-			<button class="btn btn-lg" alt="View Events Button"><a href="/#!/events">View Events</a></button>
+			<a class="btn btn-lg" alt="Add Event Button" href="/#!/events/create"><b>Add Event</b></a>
+			<a class="btn btn-lg" alt="View Events Button" href="/#!/events"><b>View Events</b></a>
 		</div>
 	</div>
 </body>

@@ -17,10 +17,6 @@ var EventSchema = new Schema({
         trim: true,
         required: "Title can't be blank"
     },
-    creator: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    },
     completed: {
         type: Boolean,
         default: false

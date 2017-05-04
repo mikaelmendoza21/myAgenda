@@ -5,7 +5,6 @@ module.exports = function(app) {
     app.route('/api/events')
         .get(events.list)
         .post(users.requiresLogin, events.create);
-        //.post(events.create);
 
     app.route('/api/events/:eventId')
         .get(events.read)
