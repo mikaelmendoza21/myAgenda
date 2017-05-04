@@ -23,8 +23,9 @@ angular.module('events').controller('EventsController', ['$scope', '$routeParams
         };
 
         $scope.findOne = function() {
+            console.log("event-client-controller routeParams="+JSON.stringify($routeParams));
             $scope.event = Events.get({
-                eventId: $routeParams.eventId
+                eventId: $routeParams.eventId,
             });
         };
 

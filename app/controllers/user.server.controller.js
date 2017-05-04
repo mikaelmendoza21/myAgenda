@@ -116,9 +116,9 @@ exports.renderRegister = function(req, res, next) {
 
 
 exports.renderHome = function(req, res, next) {
-    console.log("User data: "+ JSON.stringify(req.user));
+    console.log("User: "+ JSON.stringify(req.user.username));
     if(!req.user){
-        return res.redirect('/login');
+        return res.redirect('/');
     }
     res.render('home', {
         title: app_title,

@@ -55,20 +55,24 @@ exports.read = function(req, res) {
     res.json(req.event);
 };
 
+//return the Event's info
 exports.eventByID = function(req, res, next, id) {
-    Event.findById(id).populate('creator', 'name username').exec(function(err, event) {
-        if (err)
-            return next(err);
-
-        if (!event)
-            return next(new Error('Failed to load event ' + id));
-
-        req.event = event;
-        next();
+    var currentUser = req.user;
+    console.log("Update Event with id:"+ id);
+    console.log("Current User=" +JSON.stringify(currentUser.username));
+    User.findOne({"id": currentUser.id},
+        {$elementMatch:{"events.$.id": id}},   //fetch only the single event
+        function(err,event){
+            if(err){
+                console.log(err);
+            }
+            req.event = event;
+            next();
     });
 };
 
 exports.update = function(req, res) {
+    console.log("event.server.controller updating Event");
     var event = req.event;
     event.title = req.body.title;
     event.comment = req.body.comment;

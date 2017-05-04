@@ -51,7 +51,9 @@
             <% if (user.events) { %>
             <h3>Upcoming :</h3>
 			 	<% for(i in user.events) {%>
-				<h3><b><%= user.events[i].title %></b></h3>
+				<a alt="Edit selected event" href="/#!/events/<%= user.events[i]._id %>/edit"> 
+					<h3><b><%= user.events[i].title %></b></h3>
+				</a>
 				<h4><%= user.events[i].date %></h4>
 				<br>
 			<% 		} 
