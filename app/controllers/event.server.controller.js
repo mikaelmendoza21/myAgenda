@@ -52,7 +52,8 @@ exports.list = function(req, res) {
 };
 
 exports.read = function(req, res) {
-    res.json(req.event);
+    console.log("Event created");
+    res.json("Event Successfully created");
 };
 
 //return the Event's info

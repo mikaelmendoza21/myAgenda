@@ -133,7 +133,7 @@ exports.register = function(req, res, next) {
     if (!req.user) {
         var user = new User(req.body);
         var defaultEvent = new Event({
-            "title":"New Event",
+            "title":"Presentation",
             "date": Date.now
         });
         user.events= [defaultEvent];
